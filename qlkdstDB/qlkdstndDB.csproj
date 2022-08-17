@@ -83,6 +83,7 @@
     <Compile Include="DAO\usersDAO.cs" />
     <Compile Include="DAO\usrkhucnDAO.cs" />
     <Compile Include="DAO\vemaybayDAO.cs" />
+    <Compile Include="DSTheoNgayDiTourModel.cs" />
     <Compile Include="EF\cacnoidunghuytour.cs">
       <DependentUpon>qlkhachdoanModel.tt</DependentUpon>
     </Compile>

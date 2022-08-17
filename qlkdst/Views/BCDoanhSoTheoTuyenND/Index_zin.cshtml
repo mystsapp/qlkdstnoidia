@@ -123,14 +123,13 @@
 
                     @if (Model != null)
                     {
-                        //DataTable dt = Model.Tables[0];
-                        DataTable dt = Model.Tables[4];
+                        DataTable dt = Model.Tables[0];
                         decimal dTotal = 0, dTotalSK = 0;
                         decimal dDoanhSo = 0, dSK = 0;
                         int iSTT = 1;
                         string batdau = "", ketthuc = "";
                         //lay distinct theo khu
-
+                        
                         //foreach (DataRow row in dt.Rows)
                         foreach (DataRow row in dt.Rows)
                         {

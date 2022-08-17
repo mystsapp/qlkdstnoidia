@@ -65,5 +65,6 @@ namespace qlkdstDB.EF
         public string nguoidaidien { get; set; }
         public string doitacnuocngoai { get; set; }
         public Nullable<System.DateTime> ngayhuytour { get; set; }
+        public string ChiNhanhDH { get; set; }
     }
 }

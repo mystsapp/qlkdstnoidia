@@ -183,5 +183,42 @@ namespace qlkdstDB.EF
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("spGetSoHopDong", namParameter, thangParameter);
         }
+    
+        public virtual int pro_BCDTTheoTuyenND(Nullable<System.DateTime> bdate, Nullable<System.DateTime> edate, string nguoitao, string role, string chinhanh, string mactpre, string loaitourid, string nguontour)
+        {
+            var bdateParameter = bdate.HasValue ?
+                new ObjectParameter("bdate", bdate) :
+                new ObjectParameter("bdate", typeof(System.DateTime));
+    
+            var edateParameter = edate.HasValue ?
+                new ObjectParameter("edate", edate) :
+                new ObjectParameter("edate", typeof(System.DateTime));
+    
+            var nguoitaoParameter = nguoitao != null ?
+                new ObjectParameter("nguoitao", nguoitao) :
+                new ObjectParameter("nguoitao", typeof(string));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            var chinhanhParameter = chinhanh != null ?
+                new ObjectParameter("chinhanh", chinhanh) :
+                new ObjectParameter("chinhanh", typeof(string));
+    
+            var mactpreParameter = mactpre != null ?
+                new ObjectParameter("mactpre", mactpre) :
+                new ObjectParameter("mactpre", typeof(string));
+    
+            var loaitouridParameter = loaitourid != null ?
+                new ObjectParameter("loaitourid", loaitourid) :
+                new ObjectParameter("loaitourid", typeof(string));
+    
+            var nguontourParameter = nguontour != null ?
+                new ObjectParameter("nguontour", nguontour) :
+                new ObjectParameter("nguontour", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pro_BCDTTheoTuyenND", bdateParameter, edateParameter, nguoitaoParameter, roleParameter, chinhanhParameter, mactpreParameter, loaitouridParameter, nguontourParameter);
+        }
     }
 }

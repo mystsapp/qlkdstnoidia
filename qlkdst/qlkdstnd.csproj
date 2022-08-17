@@ -219,6 +219,7 @@
       <DependentUpon>banner_sg_small.resx</DependentUpon>
     </Compile>
     <Compile Include="Common\BaseController.cs" />
+    <Compile Include="Common\ConvertDTToList.cs" />
     <Compile Include="Common\DungChung.cs" />
     <Compile Include="Common\EPPLusExtensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -897,6 +898,7 @@
     <Content Include="Views\BCDoanhSoTheoTuyenND\Index.cshtml" />
     <Content Include="Views\BCDTTT2Nam\ShowError.cshtml" />
     <Content Include="Views\BCDoanhSoTheoTuyenND\DoanhSoTheoNganhNghe.cshtml" />
+    <Content Include="Views\BCDoanhSoTheoTuyenND\Index_zin.cshtml" />
     <None Include="Views\BienNhan\dsBienNhanFrmIn.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

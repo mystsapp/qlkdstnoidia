@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 
 namespace qlkdstDB.DAO
 {
@@ -335,6 +336,38 @@ namespace qlkdstDB.DAO
 
             return ds;
         }
+        public IEnumerable<DSTheoNgayDiTourModel> getdsDoanOBHD_1(DateTime bdate, DateTime edate, string nguoitao, string roles, string chinhanh, string sCongTyPre, string loaitour, string nguontour)
+        {
+            var parameter = new SqlParameter[]
+               {
+                    new SqlParameter("bdate", bdate),
+                    new SqlParameter("edate", edate),
+                    new SqlParameter("nguoitao", nguoitao),
+                    new SqlParameter("role", roles),
+                    new SqlParameter("chinhanh", chinhanh),
+                    new SqlParameter("mactpre", sCongTyPre),
+                    new SqlParameter("loaitourid", loaitour),
+                    new SqlParameter("nguontour", nguontour)
+
+               };
+            var obj = db.Database.SqlQuery<DSTheoNgayDiTourModel>("pro_BCDTTheoTuyenND @bdate, @edate, @nguoitao, @role, @chinhanh, @mactpre, @loaitourid, @nguontour", parameter);
+            var abc = obj.ToList();
+            ////string cn = Session["chinhanh"].ToString();
+            //var obj = db.Database.SqlQuery<DSTheoNgayDiTourModel>("exec dbo.pro_BCDTTheoTuyenND @bdate, @edate, @nguoitao, @role, @chinhanh, @mactpre, @loaitourid, @nguontour",
+            //                                                   new SqlParameter[]
+            //                                                           {
+            //                                                                    new SqlParameter("@bdate", (object)bdate ?? DBNull.Value),
+            //                                                                    new SqlParameter("@edate", (object)edate ?? DBNull.Value),
+            //                                                                    new SqlParameter("@nguoitao", (object)nguoitao ?? DBNull.Value),
+            //                                                                    new SqlParameter("@role", (object)roles ?? DBNull.Value),
+            //                                                                    new SqlParameter("@chinhanh", chinhanh),
+            //                                                                    new SqlParameter("@mactpre", sCongTyPre),
+            //                                                                    new SqlParameter("@loaitourid", loaitour),
+            //                                                                    new SqlParameter("@nguontour", nguontour)
+            //                                                           }
+            //                                                   ).ToList();
+            return obj;
+        }
 
         public DataSet BCDTTheoTuyenND(DateTime bdate, DateTime edate, string nguoitao, string roles, string chinhanh, string sCongTyPre,string loaitour,string nguontour)
         {
@@ -363,8 +396,179 @@ namespace qlkdstDB.DAO
                 }
             }
 
+            //var abc = ds.Tables[0].AsEnumerable();
+
+            //List<DSTheoNgayDiTourModel> dsTheoNgayDis = new List<DSTheoNgayDiTourModel>();
+            //foreach(var item in abc)
+            //{
+            //    DSTheoNgayDiTourModel dsTheoNgayDi = new DSTheoNgayDiTourModel();
+            //    dsTheoNgayDi.Sgtcode = item.Field<string>("Sgtcode");
+            //    dsTheoNgayDi.SoHopDong = item.Field<string>("SoHopDong");// string.IsNullOrEmpty(item.Field<string>("SoHopDong")) ? "" : item.Field<string>("SoHopDong");
+            //    dsTheoNgayDi.BatDau = item.Field<DateTime>("BatDau");
+            //    dsTheoNgayDi.KetThuc = item.Field<DateTime>("KetThuc");
+            //    dsTheoNgayDi.TuyenTQ = item.Field<string>("TuyenTQ");
+            //    dsTheoNgayDi.SoKhachTT = item.Field<int>("SoKhachTT");
+            //    dsTheoNgayDi.TrangThai = item.Field<string>("TrangThai");
+            //    dsTheoNgayDi.NguoiTao = item.Field<string>("NguoiTao");
+            //    dsTheoNgayDi.TenKH = item.Field<string>("TenKH");
+            //    dsTheoNgayDi.LoaiTourId = item.Field<string>("LoaiTourId");
+            //    dsTheoNgayDi.NguonTour = item.Field<string>("NguonTour");
+            //    dsTheoNgayDi.NganhNghe = item.Field<string>("NganhNghe");
+
+            //    dsTheoNgayDis.Add(dsTheoNgayDi);
+            //}
+
+
+            List < DSTheoNgayDiTourModel > list = ds.Tables[0].AsEnumerable().Select(m => new DSTheoNgayDiTourModel()
+            {
+                Sgtcode = m.Field<string>("Sgtcode"),
+                SoHopDong = m.Field<string>("SoHopDong") == null ? "": m.Field<string>("SoHopDong"),
+                BatDau = m.Field<DateTime>("BatDau"),
+
+                KetThuc = m.Field<DateTime>("KetThuc"),
+                TuyenTQ = m.Field<string>("TuyenTQ"),
+                SoKhachTT = m.Field<int>("SoKhachTT"),
+
+                DoanhThuTT = Convert.ToDecimal(m.Field<decimal>("DoanhThuTT")),
+                TrangThai = m.Field<string>("TrangThai"),
+                NguoiTao = m.Field<string>("NguoiTao"),
+
+                TenKH = m.Field<string>("TenKH"),
+                LoaiTourId = m.Field<string>("LoaiTourId"),
+                NguonTour = m.Field<string>("NguonTour"),
+                NganhNghe = m.Field<string>("NganhNghe"),
+            }).ToList();
+
+            foreach (var item in list)
+            {
+                var tour = db.tour.Where(x => x.sgtcode == item.Sgtcode).FirstOrDefault();
+                if (tour != null && !string.IsNullOrEmpty(tour.sohopdong))
+                {
+                    item.SoHopDong = tour.sohopdong;
+                }
+            }
+
+            var tbl = EntityToTable.ToDataTable(list);
+            ds.Tables.Add(tbl);
+            //DataTable tbl1 = new DataTable();
+            //tbl1 = ds.Tables[1];
+            //DataTable tbl2 = new DataTable();
+            //tbl2 = ds.Tables[2];
+            //DataTable tbl3 = new DataTable();
+            //tbl3 = ds.Tables[3];
+
+            //DataSet set = new DataSet();
+            //set.Tables.Add(tbl);
+            //set.Tables.Add(tbl1);
+            //set.Tables.Add(tbl2);
+            //set.Tables.Add(tbl3);
 
             return ds;
+            
         }
+        
+        //public List<tour> BCDTTheoTuyenND_List(DateTime bdate, DateTime edate, string nguoitao, string roles, string chinhanh, string sCongTyPre, string loaitour, string nguontour)
+        //{
+
+        //    IQueryable<tour> model = db.tour;
+
+        //    //if (!String.IsNullOrEmpty(searchString))
+        //    //{
+        //    //    model = model.Where(x => x.sgtcode.Contains(searchString));
+        //    //}
+
+        //    DateTime d1 = bdate, d2 = edate;
+        //    if (d1 != null && d2 != null)
+        //    {
+        //        model = model.Where(x => x.batdau != null && DbFunctions.TruncateTime(x.batdau.Value) >= DbFunctions.TruncateTime(d1) && DbFunctions.TruncateTime(x.batdau.Value) <= DbFunctions.TruncateTime(d2));
+        //    }
+
+        //    if (!String.IsNullOrEmpty(nguoitao))
+        //    {
+        //        model = model.Where(x => x.nguoitao == nguoitao);//.tenkh.Contains(tencongty));
+        //    }
+
+        //    //if (!String.IsNullOrEmpty(sohopdong))
+        //    //{
+        //    //    model = model.Where(x => x.sohopdong.Contains(sohopdong));
+        //    //}
+
+        //    //if (!String.IsNullOrEmpty(tuyentq))
+        //    //{
+        //    //    model = model.Where(x => x.tuyentq.Contains(tuyentq));
+        //    //}
+
+        //    //if (!String.IsNullOrEmpty(salenm))
+        //    //{
+        //    //    model = model.Where(x => x.nguoitao.Contains(salenm));
+        //    //}
+
+
+        //    if (sCongTyPre.Length > 0 && usr.role != "admin" && usr.role != "superadmin") //user co quyen theo vung mien
+        //    {
+        //        model = model.Where(x => sCongTyPre.Contains(x.chinhanh) || x.chinhanh == usr.chinhanh);
+        //        //model = model.Where(x => new[] { "STA","STT","STC" }.Contains(x.chinhanh));
+        //    }
+        //    else
+        //    {
+        //        if (!String.IsNullOrEmpty(sChiNhanh) && usr.role != "admin" && usr.role != "superadmin")
+        //        {
+        //            model = model.Where(x => x.chinhanh == sChiNhanh);
+        //        }
+        //        //15/05: tam cho phep sales thay toan bo code cua chi nhanh
+        //        if (usr.role == "salemanager") //chi thay code cua chi nhanh minh
+        //        {
+        //            model = model.Where(x => x.chinhanh == usr.chinhanh);
+
+        //        }
+        //        //15/05 tam thoi bo dieu kien nay
+        //        //19/5 mo lai, sale chi thay doan cua minh
+        //        if (usr != null && usr.role != "admin" && usr.role != "superadmin" && usr.role != "salemanager") //user chi thay du lieu do minh tao tru user admin hay superadmin
+        //        {
+        //            model = model.Where(x => x.nguoitao == usr.username || x.nguoitao.Contains(usr.fullName) || x.nguoisua == usr.username || x.nguoisua.Contains(usr.fullName));
+        //        }
+        //    }
+
+
+
+
+        //    return model.OrderBy(x => x.batdau).ThenBy(x => x.ngaytao).ToList();//.ToPagedList(page, pagesize);
+        //}
+
     }
+
+    public static class EntityToTable
+    {
+        public static DataTable ToDataTable<T>(this IEnumerable<T> entityList) where T : class
+        {
+            try
+            {
+                var properties = typeof(T).GetProperties();
+                var table = new DataTable();
+
+                foreach (var property in properties)
+                {
+                    var type = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+                    table.Columns.Add(property.Name, type);
+                }
+                foreach (var entity in entityList)
+                {
+                    table.Rows.Add(properties.Select(p => p.GetValue(entity, null)).ToArray());
+                }
+                return table;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+
+
+        //internal static DataTable ToDataTable(int result)
+        //{
+        //    throw new NotImplementedException();
+        //}
+    }
+
 }

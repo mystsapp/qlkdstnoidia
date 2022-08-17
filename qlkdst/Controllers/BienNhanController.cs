@@ -271,6 +271,11 @@ namespace qlkdst.Controllers
 
             try
             {
+                if (!ModelState.IsValid)
+                {
+                    return View();
+
+                }
                 string s = dao.Update(model);
 
 

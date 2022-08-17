@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\MVC\MrTrung\qlkdstnoidia_27042022\qlkdstDB\EF\qlkhachdoanModel.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\MVC\MrTrung\qlkdstnoidia_01062022\qlkdstnoidia\qlkdstDB\EF\qlkhachdoanModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

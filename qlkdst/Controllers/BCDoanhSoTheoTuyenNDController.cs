@@ -11,6 +11,8 @@ using System.Collections.Generic;
 using qlkdstDB.EF;
 using qlkdst.Models;
 using qlkdst.Tools;
+using qlkdstDB;
+using System.Linq;
 
 namespace qlkdst.Controllers
 {
@@ -43,6 +45,7 @@ namespace qlkdst.Controllers
                 d2 = DateTime.Parse(denngay);
 
             }
+
 
             ViewBag.tungay = d1.ToString("dd/MM/yyyy");
             ViewBag.denngay = d2.ToString("dd/MM/yyyy");
@@ -83,7 +86,20 @@ namespace qlkdst.Controllers
                 loaitourid = "";
             }
 
+            //var abc = dao.getdsDoanOBHD_1(d1, d2, Session["username"].ToString(), sRoles, dlcn, sCongTyPre, loaitourid, "");
+
             dt = dao.BCDTTheoTuyenND(d1, d2, Session["username"].ToString(), sRoles, dlcn, sCongTyPre, loaitourid,"");
+            
+            
+
+
+            //var dTable = dt.Tables[0];
+            //List<DSTheoNgayDiTourModel> dSTheoNgayDiTourModels = new List<DSTheoNgayDiTourModel>();
+            //dSTheoNgayDiTourModels = ConvertDTToList.ConvertDataTable<DSTheoNgayDiTourModel>(dt.Tables[0]);
+
+            //var list = dTable.Rows.OfType<DataRow>().Select(dr => dr.Field<DSTheoNgayDiTourModel>("sohopdong")).ToList();
+
+
             //DataTable tbl = dt.Tables[0];
             //tbl.Rows.RemoveAt(0);
             //for(var i = 0; i < tbl.Rows.Count; i++)
@@ -902,7 +918,8 @@ namespace qlkdst.Controllers
 
             if (ds.Tables.Count > 0)
             {
-                DataTable dt = ds.Tables[0];
+                //DataTable dt = ds.Tables[0];
+                DataTable dt = ds.Tables[4];
 
                 ////////// for nganhnghe selected
                 //if (dt.Rows.Count == 0)

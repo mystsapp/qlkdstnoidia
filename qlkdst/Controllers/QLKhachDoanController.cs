@@ -1743,7 +1743,14 @@ namespace qlkdst.Controllers
             return View();
         }
 
-        public ActionResult GetSTTSoHD(ObjSoHopDong o)
+        public JsonResult GetSTTSoHD(ObjSoHopDong o)
+        {
+
+            var sSHD = GetSTTSoHDString(o);
+            return Json(sSHD, JsonRequestBehavior.AllowGet);
+        }
+
+        private string GetSTTSoHDString(ObjSoHopDong o)
         {
             var dao = new tourDAO();
             int nam = 0, thang = 0;
@@ -1795,7 +1802,7 @@ namespace qlkdst.Controllers
                 sSHD = sThang + "001";
             }
 
-            return Json(sSHD, JsonRequestBehavior.AllowGet);
+            return sSHD;
         }
 
 
@@ -1888,6 +1895,7 @@ namespace qlkdst.Controllers
         public ActionResult Create(tour model, HttpPostedFileBase fileChuongTrinhTour)
 
         {
+            
             var dao = new tourDAO();
 
             string sUserId = Session["userId"].ToString();
@@ -1968,6 +1976,10 @@ namespace qlkdst.Controllers
                 }
                 else
                 {
+                    ObjSoHopDong objSoHopDong = new ObjSoHopDong() { batdau = model.batdau.Value.ToShortDateString() };
+                    var sSHD = GetSTTSoHDString(objSoHopDong);
+
+                    model.sohopdong = sSHD;
                     model.sgtcode = sSgtCode;
                     string id = dao.Insert(model);
 

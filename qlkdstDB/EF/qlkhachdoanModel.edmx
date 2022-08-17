@@ -732,6 +732,7 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_tour' does not have a primary
           <Property Name="ngaysua" Type="datetime" />
           <Property Name="nguoisua" Type="nvarchar" MaxLength="50" />
           <Property Name="chinhanh" Type="nvarchar" MaxLength="3" />
+          <Property Name="ChiNhanhDH" Type="varchar" MaxLength="3" />
           <Property Name="ngaynhandutien" Type="datetime" />
           <Property Name="lidonhandu" Type="nvarchar(max)" />
           <Property Name="sohopdong" Type="nvarchar" MaxLength="50" />
@@ -845,6 +846,16 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_usrkhucn' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="pro_BCDTTheoTuyenND" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="bdate" Type="datetime" Mode="In" />
+          <Parameter Name="edate" Type="datetime" Mode="In" />
+          <Parameter Name="nguoitao" Type="nvarchar" Mode="In" />
+          <Parameter Name="role" Type="varchar" Mode="In" />
+          <Parameter Name="chinhanh" Type="nvarchar" Mode="In" />
+          <Parameter Name="mactpre" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="loaitourid" Type="nvarchar" Mode="In" />
+          <Parameter Name="nguontour" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="spGetBiennhan" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="spGetSoHopDong" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="nam" Type="int" Mode="In" />
@@ -1101,6 +1112,7 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_usrkhucn' does not have a pri
     [vie_tour].[ngaysua] AS [ngaysua], 
     [vie_tour].[nguoisua] AS [nguoisua], 
     [vie_tour].[chinhanh] AS [chinhanh], 
+    [vie_tour].[ChiNhanhDH] AS [ChiNhanhDH], 
     [vie_tour].[ngaynhandutien] AS [ngaynhandutien], 
     [vie_tour].[lidonhandu] AS [lidonhandu], 
     [vie_tour].[sohopdong] AS [sohopdong], 
@@ -1393,6 +1405,16 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_usrkhucn' does not have a pri
           <EntitySet Name="vie_quyenusrtheocn" EntityType="qlkdtrModel.vie_quyenusrtheocn" />
           <EntitySet Name="tour" EntityType="qlkdtrModel.tour" />
           <EntitySet Name="vie_biennhan" EntityType="qlkdtrModel.vie_biennhan" />
+          <FunctionImport Name="pro_BCDTTheoTuyenND">
+            <Parameter Name="bdate" Mode="In" Type="DateTime" />
+            <Parameter Name="edate" Mode="In" Type="DateTime" />
+            <Parameter Name="nguoitao" Mode="In" Type="String" />
+            <Parameter Name="role" Mode="In" Type="String" />
+            <Parameter Name="chinhanh" Mode="In" Type="String" />
+            <Parameter Name="mactpre" Mode="In" Type="String" />
+            <Parameter Name="loaitourid" Mode="In" Type="String" />
+            <Parameter Name="nguontour" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="spLogin_Result">
           <Property Type="String" Name="userId" Nullable="false" MaxLength="5" />
@@ -1826,6 +1848,7 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_usrkhucn' does not have a pri
           <Property Name="nguoidaidien" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="doitacnuocngoai" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="ngayhuytour" Type="DateTime" Precision="3" />
+          <Property Name="ChiNhanhDH" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="cacnoidunghuytour">
           <Key>
@@ -2632,6 +2655,7 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_usrkhucn' does not have a pri
           <EntitySetMapping Name="vie_tour">
             <EntityTypeMapping TypeName="qlkdtrModel.vie_tour">
               <MappingFragment StoreEntitySet="vie_tour">
+                <ScalarProperty Name="ChiNhanhDH" ColumnName="ChiNhanhDH" />
                 <ScalarProperty Name="ngayhuytour" ColumnName="ngayhuytour" />
                 <ScalarProperty Name="doitacnuocngoai" ColumnName="doitacnuocngoai" />
                 <ScalarProperty Name="nguoidaidien" ColumnName="nguoidaidien" />
@@ -2980,6 +3004,7 @@ warning 6002: The table/view 'qlkdtrnoidia.dbo.vie_usrkhucn' does not have a pri
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pro_BCDTTheoTuyenND" FunctionName="qlkdtrModel.Store.pro_BCDTTheoTuyenND" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
