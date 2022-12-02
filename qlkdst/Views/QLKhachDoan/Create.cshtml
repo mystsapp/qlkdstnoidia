@@ -466,21 +466,32 @@
         }
 
     });
-    $('#btnSave').click(function () {
 
+
+    $('#btnSave').click(function () {
+        debugger
         var txtBatDau = $('#txtBatDau').val();
         var txtKetThuc = $('#txtKetThuc').val();
 
-        var arrStartDate = txtBatDau.split("/");
-        var d1 = new Date(arrStartDate[2], arrStartDate[1], arrStartDate[0]);
-        var arrEndDate = txtKetThuc.split("/");
-        var d2 = new Date(arrEndDate[2], arrEndDate[1], arrEndDate[0]);
+        //var arrStartDate = txtBatDau.split("/");
+        //var d1 = new Date(arrStartDate[2], arrStartDate[1], arrStartDate[0]);
+        //var arrEndDate = txtKetThuc.split("/");
+        //var d2 = new Date(arrEndDate[2], arrEndDate[1], arrEndDate[0]);
 
 
-        if (d2 < d1) {
-            alert('Bạn nhập sai ngày kết thúc!');
-            return false;
-        }
+        //if (d2 < d1) {
+        //    alert('Bạn nhập sai ngày kết thúc!');
+        //    return false;
+        //}
+
+        //$.post('/QLKhachDoan/CheckBatDauKetThu', { batdau: txtBatDau, ketthuc: txtKetThuc }, function (response) {
+        //    if (!response) {
+        //        debugger
+        //        alert('Bạn nhập sai ngày kết thúc!');
+                
+        //        return false;
+        //    }
+        //})
 
         //kiem tra sokhach va doanh so phai lon hon 0
         var sokhach = $('#txtSokhachdk').val();

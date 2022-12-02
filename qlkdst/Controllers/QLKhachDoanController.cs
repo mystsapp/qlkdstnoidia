@@ -1858,7 +1858,7 @@ namespace qlkdst.Controllers
         }
 
         [HttpGet]
-        public ActionResult Create()
+        public ActionResult Create(/*tour modelPost*/)
         {
             chinhanhDAO chinhanhDAO = new chinhanhDAO();
             TempData["chinhanh"] = chinhanhDAO.Chinhanhs();
@@ -1869,6 +1869,12 @@ namespace qlkdst.Controllers
             string sRole = Session["RoleName"].ToString();
 
             tour model = new tour();
+
+            //if (modelPost != null)
+            //{
+            //    model = modelPost;
+            //}
+
             model.ngaytao = DateTime.Now;
             model.nguoitao = Session["username"].ToString();
             ViewBag.loaitourid = new SelectList(db.loaitour, "tenloaitour", "tenloaitour");
@@ -1895,7 +1901,12 @@ namespace qlkdst.Controllers
         public ActionResult Create(tour model, HttpPostedFileBase fileChuongTrinhTour)
 
         {
-            
+            if(model.batdau.Value > model.ketthuc.Value)
+            {
+                SetAlert("Ngày bắt đầu không được lớn hơn ngày kết thúc.", "warning");
+                return RedirectToAction(nameof(Create)/*, model*/);
+                //return RedirectToAction("EditDichVu1", dichVu1DTO);
+            }
             var dao = new tourDAO();
 
             string sUserId = Session["userId"].ToString();
@@ -2024,6 +2035,29 @@ namespace qlkdst.Controllers
             return View(model);
         }
 
+
+        public JsonResult CheckBatDauKetThu(string batdau, string ketthuc)
+        {
+            if(string.IsNullOrEmpty(batdau) || string.IsNullOrEmpty(ketthuc))
+            {
+                return Json(false);
+            }
+            else
+            {
+                var fromDate = Convert.ToDateTime(batdau);
+                var toDate = Convert.ToDateTime(ketthuc);
+                if (fromDate > toDate)
+                {
+                    return Json(false);
+                }
+                else
+                {
+                    return Json(true);
+                }
+            }
+            
+        }
+        
         public ActionResult Cancel()
         {
             return RedirectToAction("Index");

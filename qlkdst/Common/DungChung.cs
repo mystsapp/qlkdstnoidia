@@ -543,7 +543,12 @@ namespace qlkdst.Common
             item = new SelectListItem();
             item.Text = "Từ TMĐT";
             item.Value = "Từ TMĐT";
-            lst.Add(item);         
+            lst.Add(item);
+
+            item = new SelectListItem();
+            item.Text = "Khach vang lai";
+            item.Value = "Khach vang lai";
+            lst.Add(item);
 
             return lst;
         }
