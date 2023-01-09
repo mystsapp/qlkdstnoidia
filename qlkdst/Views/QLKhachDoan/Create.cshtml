@@ -129,8 +129,8 @@
 
                     <label for="classcss" class="col-sm-2 control-label">     Số hợp đồng:</label>
                     <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.sohopdong, new { @id = "txtSHD", @class = "form-control" })
-                        chỉ được phép nhập số
+                        @Html.TextBoxFor(model => model.sohopdong, new { @id = "txtSHD", @class = "form-control", @readonly = "readonly" })
+                        @*chỉ được phép nhập số*@
                     </div>
 
 
