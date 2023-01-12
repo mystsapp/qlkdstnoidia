@@ -197,466 +197,454 @@
 
                     <label for="controllernm" class="col-sm-2 control-label">   Ngày ký hợp đồng:</label>
                     <div class="col-sm-2">
-                        @{
-                if (Model.ngaydamphan == null)
-                {
-                    //control readonly
-                    @Html.TextBoxFor(model => model.ngaykyhopdong, new { @id = "txtNgayKHD", @class = "form-control date-picker glyphicon glyphicon-calendar", @disabled = "disabled" })
-                }
-                else
-                {
-                    //control
-                    @Html.TextBoxFor(model => model.ngaykyhopdong, new { @id = "txtNgayKHD", @class = "form-control date-picker glyphicon glyphicon-calendar" })
-                }
-                        }
+                        
+                            @*if (Model.ngaydamphan == null)
+                                {
+                                    //control readonly
+                                    @Html.TextBoxFor(model => model.ngaykyhopdong, new { @id = "txtNgayKHD", @class = "form-control date-picker glyphicon glyphicon-calendar", @disabled = "disabled" })
+                                }
+                                else
+                                {
+                                    //control*@
+                            @Html.TextBoxFor(model => model.ngaykyhopdong, new { @id = "txtNgayKHD", @class = "form-control date-picker glyphicon glyphicon-calendar" })
+                        
+                        </div>
 
+                        <label for="controllernm" class="col-sm-2 control-label">   Người đại diện:</label>
+                        <div class="col-sm-2">
+
+                            @Html.TextBoxFor(model => model.nguoidaidien, new { @class = "form-control" })
+
+                        </div>
                     </div>
 
-                    <label for="controllernm" class="col-sm-2 control-label">   Người đại diện:</label>
-                    <div class="col-sm-2">
-
-                        @Html.TextBoxFor(model => model.nguoidaidien, new { @class = "form-control" })
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label for="classcss" class="col-sm-2 control-label">    Người ký HĐ:</label>
-                    <div class="col-sm-4">
-                        @{
-                if (Model.ngaydamphan == null)
-                {
-                    //control readonly
-                    @Html.TextBoxFor(model => model.nguoikyhopdong, new { @class = "form-control", @readonly = "readonly" })
-                }
-                else
-                {
-                    //control
-                    @Html.TextBoxFor(model => model.nguoikyhopdong, new { @class = "form-control" })
-                }
-                        }
-
-                    </div>
-
-
-                    <label for="classcss" class="col-sm-2 control-label">    Đối tác nước ngoài:</label>
-                    <div class="col-sm-4">
-
-                        @Html.TextBoxFor(model => model.doitacnuocngoai, new { @class = "form-control" })
-
-                    </div>
-                </div>
-
-                <div class="form-group">
-
-                    <label for="classcss" class="col-sm-2 control-label">    Hình thức liên hệ:</label>
-                    <div class="col-sm-2">
-                        @Html.TextBoxFor(model => model.hinhthucgiaodich, new { @class = "form-control" })
-                    </div>
-
-                    <label for="controllernm" class="col-sm-2 control-label">   Ngày đặt cọc vé:</label>
-                    <div class="col-sm-2">
-                        @{
-                if (Model.ngaykyhopdong == null)
-                {
-                    @Html.TextBoxFor(model => model.hanxuatvmb, new { @class = "form-control date-picker glyphicon glyphicon-calendar", @disabled = "disabled" });
-                }
-                else
-                {
-                    @Html.TextBoxFor(model => model.hanxuatvmb, new { @class = "form-control date-picker glyphicon glyphicon-calendar" });
-                }
-                        }
-
-
-                    </div>
-
-                    <label for="controllernm" class="col-sm-2 control-label">   Ngày thanh lý HĐ:</label>
-                    <div class="col-sm-2">
-                        @{
-                if (Model.ngaykyhopdong == null)
-                {
-                    //control readonly
-                    @Html.TextBoxFor(model => model.ngaythanhlyhd, new { @id = "txtNgayTLHD", @class = "form-control date-picker glyphicon glyphicon-calendar", @disabled = "disabled" });
-                }
-                else
-                {
-                    //control
-                    @Html.TextBoxFor(model => model.ngaythanhlyhd, new { @id = "txtNgayTLHD", @class = "form-control date-picker glyphicon glyphicon-calendar" });
-                }
-                        }
-
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label for="controllernm" class="col-sm-2 control-label musttype">   Loại tour(*):</label>
-                    <div class="col-sm-4">
-                        @Html.DropDownList("loaitourid", null, "--Chọn loại tour--", new { @class = "form-control" })
-                    </div>
-
-                    <label for="ddlNguonTour" class="col-sm-2 control-label  musttype">   Nguồn tour:</label>
-                    <div class="col-sm-4">
-                        @Html.DropDownList("nguontour", null, "--Chọn nguồn tour--", new { @id = "ddlNguonTour", @class = "form-control" })
-
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-                    <label for="Role" class="col-sm-2 control-label">    Số khách thực tế:</label>
-                    <div class="col-sm-2">
-                        @{
-                if (Model.ngaykyhopdong == null)
-                {
-                    //control readonly
-                    @Html.TextBoxFor(model => model.sokhachtt, new { @class = "form-control numbers", @onkeypress = "return isNumber(event)", @readonly = "readonly" });
-                }
-                else
-                {
-                    //control
-                    @Html.TextBoxFor(model => model.sokhachtt, new { @id = "txtSokhachtt", @class = "form-control numbers", @onkeypress = "return isNumber(event)" });
-                }
-                        }
-
-
-                    </div>
-                    <label for="classcss" class="col-sm-2 control-label">     Doanh thu thực tế:</label>
-                    <div class="col-sm-6">
-                        @{
-                if (Model.ngaykyhopdong == null)
-                {
-                    //control readonly
-                    @Html.TextBoxFor(model => model.doanhthutt, new { @class = "form-control numbers", @onkeypress = "return isNumber(event)", @readonly = "readonly" });
-                }
-                else
-                {
-                    //control
-                    @Html.TextBoxFor(model => model.doanhthutt, new { @id = "txtDoanhthutt", @class = "form-control numbers", @onkeypress = "return isNumber(event)" });
-                }
-                        }
-
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="fileChuongTrinhTour" class="col-sm-2 control-label">     Chương trình tour:</label>
-                    @*<div class="col-sm-10">*@
-                    @Html.TextBox("fileChuongTrinhTour", "", new { type = "file", @id = "fileChuongTrinhTour", @class = "col-sm-10 control-label" }) <br />
-                    <p class="help-block">Chỉ upload file word,excel,pdf . File tối đa 10MB</p>
-                    @*</div>*@
-                </div>
-
-                if (Model.ngaykyhopdong != null)
-                {
                     <div class="form-group">
-                        <label for="fileThanhLyHD" class="col-sm-2 control-label">File thanh lý hợp đồng: </label>
-                        @Html.TextBox("fileThanhLyHD", "", new { type = "file", @id = "fileThanhLyHD", @class = "col-sm-10 control-label" }) <br />
-                        <p class="help-block">Chỉ upload file word,excel,pdf . File tối đa 10MB</p>
+
+                        <label for="classcss" class="col-sm-2 control-label">    Người ký HĐ:</label>
+                        <div class="col-sm-4">
+                            
+                                @*if (Model.ngaydamphan == null)
+                                    {
+                                        //control readonly
+                                        @Html.TextBoxFor(model => model.nguoikyhopdong, new { @class = "form-control", @readonly = "readonly" })
+                                    }
+                                    else
+                                    {
+                                        //control*@
+                                @Html.TextBoxFor(model => model.nguoikyhopdong, new { @class = "form-control" })
+                            
+                            </div>
+
+
+                            <label for="classcss" class="col-sm-2 control-label">    Đối tác nước ngoài:</label>
+                            <div class="col-sm-4">
+
+                                @Html.TextBoxFor(model => model.doitacnuocngoai, new { @class = "form-control" })
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="classcss" class="col-sm-2 control-label">    Hình thức liên hệ:</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.hinhthucgiaodich, new { @class = "form-control" })
+                            </div>
+
+                            <label for="controllernm" class="col-sm-2 control-label">   Ngày đặt cọc vé:</label>
+                            <div class="col-sm-2">
+                                @{
+                                    if (Model.ngaykyhopdong == null)
+                                    {
+                                        @Html.TextBoxFor(model => model.hanxuatvmb, new { @class = "form-control date-picker glyphicon glyphicon-calendar", @disabled = "disabled" });
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(model => model.hanxuatvmb, new { @class = "form-control date-picker glyphicon glyphicon-calendar" });
+                                    }
+                                }
+
+
+                            </div>
+
+                            <label for="controllernm" class="col-sm-2 control-label">   Ngày thanh lý HĐ:</label>
+                            <div class="col-sm-2">
+
+                                @*if (Model.ngaykyhopdong == null)
+                                    {
+                                        //control readonly
+                                        @Html.TextBoxFor(model => model.ngaythanhlyhd, new { @id = "txtNgayTLHD", @class = "form-control date-picker glyphicon glyphicon-calendar", @disabled = "disabled" });
+                                    }
+                                    else
+                                    {
+                                        //control*@
+                                @Html.TextBoxFor(model => model.ngaythanhlyhd, new { @id = "txtNgayTLHD", @class = "form-control date-picker glyphicon glyphicon-calendar" });
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="controllernm" class="col-sm-2 control-label musttype">   Loại tour(*):</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownList("loaitourid", null, "--Chọn loại tour--", new { @class = "form-control" })
+                            </div>
+
+                            <label for="ddlNguonTour" class="col-sm-2 control-label  musttype">   Nguồn tour:</label>
+                            <div class="col-sm-4">
+                                @Html.DropDownList("nguontour", null, "--Chọn nguồn tour--", new { @id = "ddlNguonTour", @class = "form-control" })
+
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Role" class="col-sm-2 control-label">    Số khách thực tế:</label>
+                            <div class="col-sm-2">
+
+                                @*if (Model.ngaykyhopdong == null)
+                                    {
+                                        //control readonly
+                                        @Html.TextBoxFor(model => model.sokhachtt, new { @class = "form-control numbers", @onkeypress = "return isNumber(event)", @readonly = "readonly" });
+                                    }
+                                    else
+                                    {
+                                        //control*@
+                                @Html.TextBoxFor(model => model.sokhachtt, new { @id = "txtSokhachtt", @class = "form-control numbers", @onkeypress = "return isNumber(event)" });
+
+                            </div>
+                            <label for="classcss" class="col-sm-2 control-label">     Doanh thu thực tế:</label>
+                            <div class="col-sm-6">
+
+                                @*if (Model.ngaykyhopdong == null)
+                                    {
+                                        //control readonly
+                                        @Html.TextBoxFor(model => model.doanhthutt, new { @class = "form-control numbers", @onkeypress = "return isNumber(event)", @readonly = "readonly" });
+                                    }
+                                    else
+                                    {
+                                        //control*@
+                                @Html.TextBoxFor(model => model.doanhthutt, new { @id = "txtDoanhthutt", @class = "form-control numbers", @onkeypress = "return isNumber(event)" });
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="fileChuongTrinhTour" class="col-sm-2 control-label">     Chương trình tour:</label>
+                            @*<div class="col-sm-10">*@
+                            @Html.TextBox("fileChuongTrinhTour", "", new { type = "file", @id = "fileChuongTrinhTour", @class = "col-sm-10 control-label" }) <br />
+                            <p class="help-block">Chỉ upload file word,excel,pdf . File tối đa 10MB</p>
+                            @*</div>*@
+                        </div>
+
+                        if (Model.ngaykyhopdong != null)
+                        {
+                            <div class="form-group">
+                                <label for="fileThanhLyHD" class="col-sm-2 control-label">File thanh lý hợp đồng: </label>
+                                @Html.TextBox("fileThanhLyHD", "", new { type = "file", @id = "fileThanhLyHD", @class = "col-sm-10 control-label" }) <br />
+                                <p class="help-block">Chỉ upload file word,excel,pdf . File tối đa 10MB</p>
+                            </div>
+                        }
+
+                        if (Model.ngaykyhopdong != null)
+                        {
+                            <div class="form-group">
+                                <label for="fileDV" class="col-sm-2 control-label">File dịch vụ: </label>
+                                @Html.TextBox("fileDV", "", new { type = "file", @id = "fileDV", @class = "col-sm-10 control-label" }) <br />
+                                <p class="help-block">Chỉ upload file word,excel,pdf . File tối đa 10MB</p>
+                            </div>
+                        }
+                        if (Model.ngaykyhopdong != null)
+                        {
+                            <div class="form-group">
+                                <label for="fileDSKhach" class="col-sm-2 control-label">Danh sách khách đi tour: </label>
+                                @Html.TextBox("fileDSKhach", "", new { type = "file", @id = "fileDSKhach", @class = "col-sm-10 control-label" }) <br />
+                                <p class="help-block">Chỉ upload file excel . File tối đa 10MB</p>
+                            </div>
+                        }
+                        if (Model.ngaykyhopdong != null)
+                        {
+                            <div class="form-group">
+                                <label for="fileVMB" class="col-sm-2 control-label">Danh sách vé máy bay: </label>
+                                @Html.TextBox("fileVMB", "", new { type = "file", @id = "fileVMB", @class = "col-sm-10 control-label" }) <br />
+                                <p class="help-block">Chỉ upload file excel . File tối đa 10MB</p>
+                            </div>
+                        }
+                        <div class="form-group">
+
+                            <label for="controllernm" class="col-sm-2 control-label">   Ngày về đủ tiền:</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.ngaynhandutien, new { @class = "form-control date-picker glyphicon glyphicon-calendar" })
+                            </div>
+
+                            <label for="classcss" class="col-sm-2 control-label">   Lí do:</label>
+                            <div class="col-sm-6">
+                                @Html.TextBoxFor(model => model.lidonhandu, new { @class = "form-control" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="controllernm" class="col-sm-2 control-label">   Lãi dự tính chưa gồm vé (vé máy bay/vé xe lửa):</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.laichuave, new { @class = "form-control numbers" })
+                            </div>
+
+                            <label for="classcss" class="col-sm-2 control-label">   Lãi dự tính bao gồm vé (vé máy bay/vé xe lửa):</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.laigomve, new { @class = "form-control numbers" })
+                            </div>
+
+                            <label for="txtlaitt" class="col-sm-2 control-label">   Lãi thực tế gồm vé (vé máy bay/vé xe lửa):</label>
+                            <div class="col-sm-2">
+                                @Html.TextBoxFor(model => model.laithuctegomve, new { @id = "txtlaitt", @class = "form-control numbers" })
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label for="txtnguyennhan" class="col-sm-2 control-label">   Nguyên nhân hủy thầu:</label>
+                            @*<div class="col-sm-10">
+                                    @Html.TextAreaFor(model => model.nguyennhanhuythau, 5, 15, new { @id = "txtnguyennhanhuytour", @class = "form-control" })
+                                </div>*@
+                            <div class="col-sm-4">
+                                @Html.TextAreaFor(model => model.nguyennhanhuythau, 5, 15, new { @id = "txtnguyennhanhuytour", @class = "form-control", @readonly = "readonly" })
+                                <button id="btnCacNN" class="button">...</button>
+                                @*@Html.ListBox("nguyennhanhuythau", (MultiSelectList)ViewBag.nguyennhanhuythau, new { @id = "txtnguyennhanhuytour", size = 10, @class = "form-control" })*@
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="txthh" class="col-sm-2 control-label">   Hoa hồng dự tính:</label>
+                            <div class="col-sm-10">
+                                @Html.TextBox("txthh", "", new { @id = "txthh", @class = "form-control" })
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+
+                            <label for="classcss" class="col-sm-2 control-label">    Người tạo:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.nguoitao, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+
+                            <label for="classcss" class="col-sm-2 control-label">    Ngày tạo:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.ngaytao, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+
+                            <label for="classcss" class="col-sm-2 control-label">    Người sửa:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.nguoisua, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+
+                            <label for="classcss" class="col-sm-2 control-label">    Ngày sửa:</label>
+                            <div class="col-sm-4">
+                                @Html.TextBoxFor(model => model.ngaysua, new { @class = "form-control", @readonly = "readonly" })
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-offset-2">
+                            <button name="submit" class="btn btn-primary" id="btnSave"><i class="fa fa-save"></i>Lưu</button>
+                            @Html.ActionLink("Quay lại", "Cancel", "QLKhachDoan", null, new { @class = "btn btn-warning fa fa-close" })
+                            @if (Model.trangthai == null || Model.trangthai == "0" || Model.trangthai == "1" || Model.trangthai == "2")
+                            {
+                                <a id="btnHuyTour" data-id="@Model.idtour" class="btnhuytour btn btn-danger">Hủy Tour</a>
+                            }
+
+                        </div>
+
+                            }
+
+                        </div>
                     </div>
-                }
-
-                if (Model.ngaykyhopdong != null)
-                {
-                    <div class="form-group">
-                        <label for="fileDV" class="col-sm-2 control-label">File dịch vụ: </label>
-                        @Html.TextBox("fileDV", "", new { type = "file", @id = "fileDV", @class = "col-sm-10 control-label" }) <br />
-                        <p class="help-block">Chỉ upload file word,excel,pdf . File tối đa 10MB</p>
-                    </div>
-                }
-                if (Model.ngaykyhopdong != null)
-                {
-                    <div class="form-group">
-                        <label for="fileDSKhach" class="col-sm-2 control-label">Danh sách khách đi tour: </label>
-                        @Html.TextBox("fileDSKhach", "", new { type = "file", @id = "fileDSKhach", @class = "col-sm-10 control-label" }) <br />
-                        <p class="help-block">Chỉ upload file excel . File tối đa 10MB</p>
-                    </div>
-                }
-                if (Model.ngaykyhopdong != null)
-                {
-                    <div class="form-group">
-                        <label for="fileVMB" class="col-sm-2 control-label">Danh sách vé máy bay: </label>
-                        @Html.TextBox("fileVMB", "", new { type = "file", @id = "fileVMB", @class = "col-sm-10 control-label" }) <br />
-                        <p class="help-block">Chỉ upload file excel . File tối đa 10MB</p>
-                    </div>
-                }
-                <div class="form-group">
-
-                    <label for="controllernm" class="col-sm-2 control-label">   Ngày về đủ tiền:</label>
-                    <div class="col-sm-2">
-                        @Html.TextBoxFor(model => model.ngaynhandutien, new { @class = "form-control date-picker glyphicon glyphicon-calendar" })
-                    </div>
-
-                    <label for="classcss" class="col-sm-2 control-label">   Lí do:</label>
-                    <div class="col-sm-6">
-                        @Html.TextBoxFor(model => model.lidonhandu, new { @class = "form-control" })
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="controllernm" class="col-sm-2 control-label">   Lãi dự tính chưa gồm vé (vé máy bay/vé xe lửa):</label>
-                    <div class="col-sm-2">
-                        @Html.TextBoxFor(model => model.laichuave, new { @class = "form-control numbers" })
-                    </div>
-
-                    <label for="classcss" class="col-sm-2 control-label">   Lãi dự tính bao gồm vé (vé máy bay/vé xe lửa):</label>
-                    <div class="col-sm-2">
-                        @Html.TextBoxFor(model => model.laigomve, new { @class = "form-control numbers" })
-                    </div>
-
-                    <label for="txtlaitt" class="col-sm-2 control-label">   Lãi thực tế gồm vé (vé máy bay/vé xe lửa):</label>
-                    <div class="col-sm-2">
-                        @Html.TextBoxFor(model => model.laithuctegomve, new { @id = "txtlaitt", @class = "form-control numbers" })
-                    </div>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label for="txtnguyennhan" class="col-sm-2 control-label">   Nguyên nhân hủy thầu:</label>
-                    @*<div class="col-sm-10">
-                            @Html.TextAreaFor(model => model.nguyennhanhuythau, 5, 15, new { @id = "txtnguyennhanhuytour", @class = "form-control" })
-                        </div>*@
-                    <div class="col-sm-4">
-                        @Html.TextAreaFor(model => model.nguyennhanhuythau, 5, 15, new { @id = "txtnguyennhanhuytour", @class = "form-control", @readonly = "readonly" })
-                        <button id="btnCacNN" class="button">...</button>
-                        @*@Html.ListBox("nguyennhanhuythau", (MultiSelectList)ViewBag.nguyennhanhuythau, new { @id = "txtnguyennhanhuytour", size = 10, @class = "form-control" })*@
-                    </div>
-                </div>
-                <div class="form-group">
-
-                    <label for="txthh" class="col-sm-2 control-label">   Hoa hồng dự tính:</label>
-                    <div class="col-sm-10">
-                        @Html.TextBox("txthh", "", new { @id = "txthh", @class = "form-control" })
-                    </div>
 
 
-                </div>
-                <div class="form-group">
+                    <!--model-------------------------------------------------------------------------------------------------------------------------------->
 
-                    <label for="classcss" class="col-sm-2 control-label">    Người tạo:</label>
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.nguoitao, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-
-                    <label for="classcss" class="col-sm-2 control-label">    Ngày tạo:</label>
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.ngaytao, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-
-                </div>
-                <div class="form-group">
-
-                    <label for="classcss" class="col-sm-2 control-label">    Người sửa:</label>
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.nguoisua, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-
-                    <label for="classcss" class="col-sm-2 control-label">    Ngày sửa:</label>
-                    <div class="col-sm-4">
-                        @Html.TextBoxFor(model => model.ngaysua, new { @class = "form-control", @readonly = "readonly" })
-                    </div>
-
-                </div>
-
-                <div class="col-sm-offset-2">
-                    <button name="submit" class="btn btn-primary" id="btnSave"><i class="fa fa-save"></i>Lưu</button>
-                    @Html.ActionLink("Quay lại", "Cancel", "QLKhachDoan", null, new { @class = "btn btn-warning fa fa-close" })
-                    @if (Model.trangthai == null || Model.trangthai == "0" || Model.trangthai == "1" || Model.trangthai == "2")
-                    {
-                        <a id="btnHuyTour" data-id="@Model.idtour" class="btnhuytour btn btn-danger">Hủy Tour</a>
-                    }
-
-                </div>
-
-            }
-
-        </div>
-    </div>
-
-
-    <!--model-------------------------------------------------------------------------------------------------------------------------------->
-
-    <div class="modal fade in" role="dialog" id="cuasoTuyenTQ">
-        <div class="modal-dialog  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header alert alert-info">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>TẠO TUYẾN</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <form class="form-horizontal">
-
-                                <div class="form-group">
-
-                                    <div class="col-sm-6">
-                                        <label class="control-label" for="ddlDmQuocGia">Quốc gia:</label>
-                                        @Html.ListBox("dmquocgia", (MultiSelectList)ViewBag.dmquocgia, new { @id = "ddlDmQuocGia", size = 10, @class = "form-control", @style = "width: 75%" })
-                                    </div>
-
-                                    <div class="col-sm-6">
-                                        <label class="control-label" for="ddlThanhPho">Địa danh:</label>
-                                        @Html.ListBox("dmthanhpho", (MultiSelectList)ViewBag.dmthanhpho, new { @id = "ddlThanhPho", size = 10, @class = "form-control", @style = "width: 75%" })
-                                    </div>
+                    <div class="modal fade in" role="dialog" id="cuasoTuyenTQ">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header alert alert-info">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>TẠO TUYẾN</h4>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <label class="control-label" for="txtTuyen">Quốc gia:</label>
-                                        @Html.TextBox("txtT", "", new { @id = "txtTuyen", @class = "form-control", @readonly = "readonly" })
+                                <div class="modal-body">
+
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <form class="form-horizontal">
+
+                                                <div class="form-group">
+
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label" for="ddlDmQuocGia">Quốc gia:</label>
+                                                        @Html.ListBox("dmquocgia", (MultiSelectList)ViewBag.dmquocgia, new { @id = "ddlDmQuocGia", size = 10, @class = "form-control", @style = "width: 75%" })
+                                                    </div>
+
+                                                    <div class="col-sm-6">
+                                                        <label class="control-label" for="ddlThanhPho">Địa danh:</label>
+                                                        @Html.ListBox("dmthanhpho", (MultiSelectList)ViewBag.dmthanhpho, new { @id = "ddlThanhPho", size = 10, @class = "form-control", @style = "width: 75%" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label" for="txtTuyen">Quốc gia:</label>
+                                                        @Html.TextBox("txtT", "", new { @id = "txtTuyen", @class = "form-control", @readonly = "readonly" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="col-sm-12">
+                                                        <label class="control-label" for="txtDiem">Tuyến tham quan:</label>
+                                                        @Html.TextBox("txt", "", new { @id = "txtDiem", @class = "form-control", @readonly = "readonly" })
+                                                    </div>
+                                                </div>
+
+                                            </form>
+
+                                        </div>
                                     </div>
+
+
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <label class="control-label" for="txtDiem">Tuyến tham quan:</label>
-                                        @Html.TextBox("txt", "", new { @id = "txtDiem", @class = "form-control", @readonly = "readonly" })
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary csstaotuyen" data-dismiss="modal" value="Tạo tuyến" />
+                                    <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                    <button class="btn btn-info" id="btnDmQuocGia">Danh mục quốc gia</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!----CUA SO DM KH-->
+
+                    <div class="modal fade in" role="dialog" id="cuasoDmkhach">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header alert alert-info">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>DANH MỤC KHÁCH</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Tìm:
+                                            @Html.TextBox("txtTimKH", "", new { @id = "txtTimKH", @class = "form-control" })
+                                        </div>
                                     </div>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="ddlDmQuocGia">Tên khách hàng - địa chỉ:</label>
+                                            @Html.ListBox("dmkh", (MultiSelectList)ViewBag.dmkh, new { @id = "ddldmkh", size = 20, @class = "form-control" })
+                                        </div>
+
+                                    </div>
+
                                 </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary csschonkh" data-dismiss="modal" value="Chọn khách hàng" />
+                                    <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button>
 
-                            </form>
+                                    @if (sRole != "sales")
+                                    {
+                                        <button class="btn btn-info" id="btnDMKH">Danh mục khách hàng</button>
+                                    }
 
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 
+                    <!----CUA SO DM HOA HONG-->
 
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary csstaotuyen" data-dismiss="modal" value="Tạo tuyến" />
-                    <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                    <button class="btn btn-info" id="btnDmQuocGia">Danh mục quốc gia</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!----CUA SO DM KH-->
+                    <div class="modal fade in" role="dialog" id="cuasohh">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header alert alert-info">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>DANH MỤC HOA HỒNG</h4>
+                                </div>
+                                <div class="modal-body">
 
-    <div class="modal fade in" role="dialog" id="cuasoDmkhach">
-        <div class="modal-dialog  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header alert alert-info">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>DANH MỤC KHÁCH</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            Tìm:
-                            @Html.TextBox("txtTimKH", "", new { @id = "txtTimKH", @class = "form-control" })
+                                    <div id="divdmhoahong" class="page-scroll scroll" style="height:400px;">
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    @*<input type="submit" class="btn btn-primary csschonkh" data-dismiss="modal" value="Chọn khách hàng" />*@
+                                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Đóng</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
 
-                        <div class="col-md-12">
-                            <label class="control-label" for="ddlDmQuocGia">Tên khách hàng - địa chỉ:</label>
-                            @Html.ListBox("dmkh", (MultiSelectList)ViewBag.dmkh, new { @id = "ddldmkh", size = 20, @class = "form-control" })
-                        </div>
+                    <!----CUA SO LICH SU KHACH HANG-->
 
-                    </div>
+                    <div class="modal fade in" role="dialog" id="cuasolichsukh">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header alert alert-info">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>LỊCH SỬ THAM GIA TOUR CỦA KHÁCH HÀNG</h4>
+                                </div>
+                                <div class="modal-body">
 
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary csschonkh" data-dismiss="modal" value="Chọn khách hàng" />
-                    <button class="btn btn-warning" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                    <div id="divlichsukh" class="page-scroll scroll" style="height:400px;">
+                                    </div>
 
-                    @if (sRole != "sales")
-                    {
-                        <button class="btn btn-info" id="btnDMKH">Danh mục khách hàng</button>
-                    }
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!----CUA SO DM HOA HONG-->
-
-    <div class="modal fade in" role="dialog" id="cuasohh">
-        <div class="modal-dialog  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header alert alert-info">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>DANH MỤC HOA HỒNG</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div id="divdmhoahong" class="page-scroll scroll" style="height:400px;">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    @*<input type="submit" class="btn btn-primary csschonkh" data-dismiss="modal" value="Chọn khách hàng" />*@
-                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!----CUA SO LICH SU KHACH HANG-->
-
-    <div class="modal fade in" role="dialog" id="cuasolichsukh">
-        <div class="modal-dialog  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header alert alert-info">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>LỊCH SỬ THAM GIA TOUR CỦA KHÁCH HÀNG</h4>
-                </div>
-                <div class="modal-body">
-
-                    <div id="divlichsukh" class="page-scroll scroll" style="height:400px;">
-                    </div>
-
-                </div>
-                <div class="modal-footer">
-                    @*<input type="submit" class="btn btn-primary csschonkh" data-dismiss="modal" value="Chọn khách hàng" />*@
-                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Đóng</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--END model-------------------------------------------------------------------------------------------------------------------------------->
-    <!----CUA SO DM NGUYEN NHAN-->
-
-    <div class="modal fade in" role="dialog" id="cuasoCacNN">
-        <div class="modal-dialog  modal-lg">
-            <div class="modal-content">
-                <div class="modal-header alert alert-info">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>DANH MỤC NGUYÊN NHÂN</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            Tìm:
-                            @Html.TextBox("txtCacNN", "", new { @id = "txtCacNN", @class = "form-control" })
+                                </div>
+                                <div class="modal-footer">
+                                    @*<input type="submit" class="btn btn-primary csschonkh" data-dismiss="modal" value="Chọn khách hàng" />*@
+                                    <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Đóng</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="row">
 
-                        <div class="col-md-12">
-                            <label class="control-label" for="ddlDmQuocGia">Danh mục nguyên nhân:</label>
-                            @Html.ListBox("listcacnn", (MultiSelectList)ViewBag.nguyennhanhuythau, new { @id = "listcacnn", size = 20, @class = "form-control" })
+                    <!--END model-------------------------------------------------------------------------------------------------------------------------------->
+                    <!----CUA SO DM NGUYEN NHAN-->
+
+                    <div class="modal fade in" role="dialog" id="cuasoCacNN">
+                        <div class="modal-dialog  modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header alert alert-info">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title "><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>DANH MỤC NGUYÊN NHÂN</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            Tìm:
+                                            @Html.TextBox("txtCacNN", "", new { @id = "txtCacNN", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            <label class="control-label" for="ddlDmQuocGia">Danh mục nguyên nhân:</label>
+                                            @Html.ListBox("listcacnn", (MultiSelectList)ViewBag.nguyennhanhuythau, new { @id = "listcacnn", size = 20, @class = "form-control" })
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary cssbtnnn" data-dismiss="modal" value="Chọn nguyên nhân" />
+                                    <button class="btn btn-warning cssbtnhuychonnn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
 
                 </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary cssbtnnn" data-dismiss="modal" value="Chọn nguyên nhân" />
-                    <button class="btn btn-warning cssbtnhuychonnn" data-dismiss="modal" aria-hidden="true">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-<script>
+                <script>
     $(function () {
         $(".date-picker").mask("99/99/9999");
 
@@ -830,7 +818,7 @@
             if(!confirm('Bạn muốn thanh lý hợp đồng?')){
                 return false;
             }
-           
+
         }
         // save confirm
         var r = confirm("CN Tạo khác CNĐH lần sau sẽ không thay đổi CNĐH được!");
@@ -1184,4 +1172,4 @@
     $(function () {
         $('.numbers').inputmask({ alias: 'decimal', 'groupSeparator': ',', 'autoGroup': true, 'autoUnmask': true, 'removeMaskOnSubmit': true });
     });
-</script>
+                </script>
