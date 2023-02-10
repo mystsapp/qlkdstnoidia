@@ -1745,64 +1745,71 @@ namespace qlkdst.Controllers
 
         public JsonResult GetSTTSoHD(ObjSoHopDong o)
         {
-
+            var chiNhanh = Session["chinhanh"].ToString();
+            o.ChiNhanh = chiNhanh; // new
             var sSHD = GetSTTSoHDString(o);
+            //var sSHD = GetSTTSoHDString(o);
             return Json(sSHD, JsonRequestBehavior.AllowGet);
         }
 
         private string GetSTTSoHDString(ObjSoHopDong o)
         {
             var dao = new tourDAO();
-            int nam = 0, thang = 0;
-            string sSTT = "";
-            int iSTT = 0;
-            string sBatDau = "";
-            string sSHD = "", sThang = "";
-            sBatDau = o.batdau;
+            var newSoHD = dao.TaoSoHopDong(o.ChiNhanh, Convert.ToDateTime(o.batdau));
 
-            try
-            {
-                if (sBatDau.Length == 10)
-                {
-                    sThang = sBatDau.Substring(3, 2);
-                    nam = int.Parse(sBatDau.Substring(6, 4));
-                    thang = int.Parse(sThang);
+            return newSoHD;
 
-                    sSTT = dao.GetStrSTTCuaSoHopDong(nam, thang);
-                    iSTT = int.Parse(sSTT);
-                    iSTT = iSTT + 1;
-                    //dinh dang so hop dong  thang cua ngay bat dau di tour + 3 So thu tu, tong cong 5 ky tu
-                    switch (sThang.Length)
-                    {
-                        case 1:
-                            sThang = "0" + sThang;
-                            break;
-                    }
+            //var dao = new tourDAO();
+            //int nam = 0, thang = 0;
+            //string sSTT = "";
+            //int iSTT = 0;
+            //string sBatDau = "";
+            //string sSHD = "", sThang = "";
+            //sBatDau = o.batdau;
 
-                    switch (iSTT.ToString().Length)
-                    {
-                        case 1:
-                            sSHD = sThang + "00" + iSTT.ToString();
-                            break;
-                        case 2:
-                            sSHD = sThang + "0" + iSTT.ToString();
-                            break;
-                        case 3:
-                            sSHD = sThang + iSTT.ToString();
-                            break;
-                        default:
-                            sSHD = sThang + "001";
-                            break;
-                    }
-                }
+            //try
+            //{
+            //    if (sBatDau.Length == 10)
+            //    {
+            //        sThang = sBatDau.Substring(3, 2);
+            //        nam = int.Parse(sBatDau.Substring(6, 4));
+            //        thang = int.Parse(sThang);
 
-            }
-            catch (Exception)
-            {
-                sSHD = sThang + "001";
-            }
+            //        sSTT = dao.GetStrSTTCuaSoHopDong(nam, thang);
+            //        iSTT = int.Parse(sSTT);
+            //        iSTT = iSTT + 1;
+            //        //dinh dang so hop dong  thang cua ngay bat dau di tour + 3 So thu tu, tong cong 5 ky tu
+            //        switch (sThang.Length)
+            //        {
+            //            case 1:
+            //                sThang = "0" + sThang;
+            //                break;
+            //        }
 
-            return sSHD;
+            //        switch (iSTT.ToString().Length)
+            //        {
+            //            case 1:
+            //                sSHD = sThang + "00" + iSTT.ToString();
+            //                break;
+            //            case 2:
+            //                sSHD = sThang + "0" + iSTT.ToString();
+            //                break;
+            //            case 3:
+            //                sSHD = sThang + iSTT.ToString();
+            //                break;
+            //            default:
+            //                sSHD = sThang + "001";
+            //                break;
+            //        }
+            //    }
+
+            //}
+            //catch (Exception)
+            //{
+            //    sSHD = sThang + "001";
+            //}
+
+            //return sSHD;
         }
 
 
@@ -1987,7 +1994,8 @@ namespace qlkdst.Controllers
                 }
                 else
                 {
-                    ObjSoHopDong objSoHopDong = new ObjSoHopDong() { batdau = model.batdau.Value.ToShortDateString() };
+                    ObjSoHopDong objSoHopDong = new ObjSoHopDong() 
+                    { batdau = model.batdau.Value.ToShortDateString(), ChiNhanh = model.chinhanh }; // new soHD
                     var sSHD = GetSTTSoHDString(objSoHopDong);
 
                     model.sohopdong = sSHD;

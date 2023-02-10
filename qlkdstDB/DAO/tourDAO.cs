@@ -26,6 +26,68 @@ namespace qlkdstDB.DAO
             return b;
         }
 
+        public string TaoSoHopDong(string chinhanh, DateTime batdau) //, DateTime ketthuc, int sokhach, string tuyentq, string chudetour, string makh, string nguoitaotour)
+        {
+            string sOutputSgtCode = "";
+
+            //phan doan trong procedure
+           // if (chinhanh == "STS") chinhanh = "STN";
+
+            string constr = ConfigurationManager.ConnectionStrings["strkhi_goiprocedure"].ConnectionString;
+
+            try
+            {
+                SqlConnection sqlConn = new SqlConnection(constr);
+                sqlConn.Open();
+
+                SqlCommand cmdReport = sqlConn.CreateCommand();
+                cmdReport.CommandType = CommandType.StoredProcedure;
+                cmdReport.CommandText = "spTaoSohopdong";
+                cmdReport.Parameters.Add(new SqlParameter("chinhanh", chinhanh));
+                cmdReport.Parameters.Add(new SqlParameter("batdau", batdau));
+                //cmdReport.Parameters.Add(new SqlParameter("ketthuc", ketthuc));
+                //cmdReport.Parameters.Add(new SqlParameter("sokhach", sokhach));
+                //cmdReport.Parameters.Add(new SqlParameter("tuyentq", tuyentq));
+                //cmdReport.Parameters.Add(new SqlParameter("chudetour", chudetour));
+                //cmdReport.Parameters.Add(new SqlParameter("makh", makh));
+                //cmdReport.Parameters.Add(new SqlParameter("nguoitaotour", nguoitaotour));
+
+                SqlParameter newSohd = new SqlParameter();
+                newSohd.ParameterName = "newSohd";
+                newSohd.Direction = ParameterDirection.Output;
+                newSohd.DbType = DbType.String;
+                newSohd.Size = 5;
+                cmdReport.Parameters.Add(newSohd);
+
+                try
+                {
+                    int sqlRows = cmdReport.ExecuteNonQuery();
+                    sOutputSgtCode = newSohd.Value.ToString();
+
+                    if (sqlRows > 0)
+                        sOutputSgtCode = cmdReport.Parameters["newSohd"].Value.ToString();
+                }
+                catch (Exception e)
+                {
+
+                }
+
+            }
+            catch (Exception e)
+            {
+
+            }
+
+            //using (SqlConnection sqlConn = new SqlConnection(constr))
+            //{
+
+            //}           
+
+
+
+            return sOutputSgtCode;
+        }
+        
         public string TaoCodeDoan(string chinhanh, DateTime batdau, DateTime ketthuc, int sokhach, string tuyentq, string chudetour, string makh, string nguoitaotour)
         {
             string sOutputSgtCode = "";
@@ -87,6 +149,7 @@ namespace qlkdstDB.DAO
 
             return sOutputSgtCode;
         }
+        
         public List<quan> GetQuan(decimal[] maquocgia)
         {
             List<quan> lst = new List<quan>();                   

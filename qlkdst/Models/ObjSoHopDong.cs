@@ -9,5 +9,6 @@ namespace qlkdst.Models
     {
         public string batdau { get; set; }
         public string stt { get; set; }
+        public string ChiNhanh { get; set; } // TaoSoHopDong
     }
 }
